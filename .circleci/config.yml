@@ -30,9 +30,6 @@ jobs:
           - v1-dependencies-
 
       - run:
-          name: install older version of pip
-          command: pip install --force-reinstall pip==9.0.3
-      - run:
           name: install dependencies
           command: |
             python -m virtualenv venv
