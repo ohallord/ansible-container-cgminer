@@ -39,8 +39,8 @@ jobs:
           command: |
              ansible-container --var-file cgminer_vars.yml build
           name: Create docker config.json
-          name: Make Docker Config file
-          command: mkdir ~/.docker
+         # name: Make Docker Config file
+         # command: mkdir ~/.docker
           command: |
            cat <<'EOF' | sudo tee ~/.docker/config.json
            {
@@ -56,7 +56,7 @@ jobs:
            EOF
 
           name:  Push Container
-          command: ansible-container --var-file cgminer_vars.yml
+          command: ansible-container --var-file cgminer_vars.yml push
           #command: echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       - save_cache:
           paths:
