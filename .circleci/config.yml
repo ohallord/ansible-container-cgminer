@@ -36,10 +36,13 @@ jobs:
             . venv/bin/activate
             pip install -r requirements.txt
           name: Build docker container
-          command: ansible-container --var-file cgminer_vars.yml build
-          name: Create docker config.json
           command: |
-           cat <<'EOF' | sudo tee ~/.docker/ config.json
+             ansible-container --var-file cgminer_vars.yml build
+          name: Create docker config.json
+          name: Make Docker Config file
+          command: mkdir ~/.docker
+          command: |
+           cat <<'EOF' | sudo tee ~/.docker/config.json
            {
               "auths": {
                  "https://index.docker.io/v1/": {
