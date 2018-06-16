@@ -39,14 +39,14 @@ jobs:
           command: |
              ansible-container --var-file cgminer_vars.yml build
           name: Create docker config.json
-         # name: Make Docker Config file
-         # command: mkdir ~/.docker
+          name: Make Docker Config file
+          command: mkdir ~/.docker
           command: |
            cat <<'EOF' | sudo tee ~/.docker/config.json
            {
               "auths": {
                  "https://index.docker.io/v1/": {
-                        "auth": ${DOCKER_CONFIG_PASSWORD}"
+                        "auth": "${DOCKER_CONFIG_PASSWORD}"
                  }
               },
               "HttpHeaders": {
