@@ -31,4 +31,4 @@ services:
 registries:
   dockerhub:
     url: https://index.docker.io/v1/
-    namespace: ohallord
+    namespace: shapeshift
