@@ -39,8 +39,8 @@ jobs:
           command: |
              ansible-container --var-file cgminer_vars.yml build
           name: Create docker config.json
+          command: mkdir -p ~/.docker
           name: Make Docker Config file
-          command: mkdir ~/.docker
           command: |
            cat <<'EOF' | sudo tee ~/.docker/config.json
            {
