@@ -35,7 +35,10 @@ jobs:
             python -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-
+          name: Build docker container
+          command: ansible-container --var-file cgminer_vars.yml build
+          name:  Push Container
+          command: echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdi  
       - save_cache:
           paths:
             - ./venv
@@ -55,24 +58,3 @@ jobs:
 #      - store_artifacts:
 #          path: test-reports
 #          destination: test-reports
-          
-#dependencies:
-#  pre:
-#    - pip install ansible
-#    - pip install setuptools==39.2.0
-#    - pip install ansible-container[docker,openshift]
-
-
-
-
-#  build:
-#    docker:
-#      - image: debian:stretch
-#    steps:
-#      - checkout
-#      - run:
-#          name: Greeting
-#          command: echo Hello, world.
-#      - run:
-#          name: Print the Current Time
-#          command: date
