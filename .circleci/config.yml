@@ -4,19 +4,9 @@ jobs:
 #
 # Check https://circleci.com/docs/2.0/language-python/ for more details
 #
-version: 2
-jobs:
   build:
     docker:
-      # specify the version you desire here
-      # use `-browsers` prefix for selenium tests, e.g. `3.6.1-browsers`
       - image: circleci/python:3.6.1
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-      # - image: circleci/postgres:9.4
-
     working_directory: ~/repo
 
     steps:
@@ -38,6 +28,8 @@ jobs:
           name: Build docker container
           command: |
              ansible-container --var-file cgminer_vars.yml build
+          name:  Push Container
+          command: ansible-container --var-file cgminer_vars.yml push
           name: Create docker config.json
           command: mkdir -p ~/.docker
 #          name: Make Docker Config file
@@ -55,8 +47,6 @@ jobs:
 #           }
 #           EOF
 
-          name:  Push Container
-          command: ansible-container --var-file cgminer_vars.yml push
           #command: echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       - save_cache:
           paths:
