@@ -38,7 +38,8 @@ jobs:
           name: Build docker container
           command: ansible-container --var-file cgminer_vars.yml build
           name:  Push Container
-          command: echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password-stdin
+          command: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+          #command: echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       - save_cache:
           paths:
             - ./venv
