@@ -1,0 +1,5 @@
+
+# Pool URL 
+pool_url: "stratum+tcp://us-east.stratum.slushpool.com:3333"
+miner_user: "ohallord@gmail.com"
+miner_passwd: "worker1" 

@@ -1,0 +1,31 @@
+---
+- name: Pass options to dpkg on run
+  apt:
+    upgrade: dist
+    update_cache: yes
+- name: install apt-get resources
+  apt: name={{item}} state=installed
+  with_items:
+       - git
+       - vim
+       - gnupg2
+
+- name: Copy cgminer executable into container
+  copy:
+    src: "{{ role_path }}/files//cgminer"
+    dest: "/usr/local/bin/cgminer"
+    mode: 0755
+- name: Copy run_cgminer.sh into container
+  copy: 
+    src: "{{ role_path }}/files/run_cgminer.sh"
+    dest: "/usr/local/bin/run_cgminer.sh"
+    mode: 0755
+- name: Copy cgminer.sig into /root/
+  copy: 
+    src: "{{ role_path }}/files/cgminer.sig"
+    dest: "/root/cgminer.sig"
+    mode: 0444
+- name: Pull down the signiture
+  command: gpg --keyserver hkp://keys.gnupg.net:80 --recv-key 1B92B1736022404A99763F74340AEE5B7E61E074
+- name: test the Key signiture
+  command: gpg --batch --verify /root/cgminer.sig /usr/local/bin/cgminer
