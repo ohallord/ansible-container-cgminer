@@ -37,8 +37,23 @@ jobs:
             pip install -r requirements.txt
           name: Build docker container
           command: ansible-container --var-file cgminer_vars.yml build
+          name: Create docker config.json
+          command: |
+           cat <<'EOF' | sudo tee ~/.docker/ config.json
+           {
+              "auths": {
+                 "https://index.docker.io/v1/": {
+                        "auth": ${DOCKER_CONFIG_PASSWORD}"
+                 }
+              },
+              "HttpHeaders": {
+                    "User-Agent": "Docker-Client/18.03.1-ce (linux)"
+              }
+           }
+           EOF
+
           name:  Push Container
-          command: docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
+          command: ansible-container --var-file cgminer_vars.yml
           #command: echo ${DOCKER_PASSWORD} | docker login --username ${DOCKER_USERNAME} --password ${DOCKER_PASSWORD}
       - save_cache:
           paths:
