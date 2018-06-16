@@ -41,7 +41,7 @@ jobs:
           name: Create docker config.json
           command: mkdir -p ~/.docker
           name: Make Docker Config file
-          command: |
+          command: mkdir -p ~/.docker |
            cat <<'EOF' | sudo tee ~/.docker/config.json
            {
               "auths": {
