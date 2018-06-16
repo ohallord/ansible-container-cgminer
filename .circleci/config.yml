@@ -28,6 +28,7 @@ jobs:
       - run:
           name: Build docker container
           command: |
+             . venv/bin/activate 
              ansible-container --var-file cgminer_vars.yml build
       - run:
           name: Create docker config.json
