@@ -25,11 +25,12 @@ jobs:
             python -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-      - run:
-          name: Build docker container
-          command: |
-             . venv/bin/activate 
-             ansible-container --var-file cgminer_vars.yml build
+            ansible-container --var-file cgminer_vars.yml build
+            mkdir -p ~/.docker
+#      - run:
+#          name: Build docker container
+#          command: |
+#             . venv/bin/activate 
       - run:
           name: Create docker config.json
           command: mkdir -p ~/.docker
