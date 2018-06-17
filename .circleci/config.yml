@@ -32,37 +32,9 @@ jobs:
           command:
             . venv/bin/activate
             ansible-container --var-file cgminer_vars.yml build --debug
+            docker images
             ansible-container --var-file cgminer_vars.yml push --push-to dockerhub
       - save_cache: # special step to save dependency cache
           key: v2-{{ .Branch }}-{{ checksum "requirements.txt" }}
           paths:
             - "venv"
-#      - run:
-#          name: Build docker container
-#          command: |
-#            . venv/bin/activate
-#             ansible-container --var-file cgminer_vars.yml build --roles-path  ${CIRCLE_WORKING_DIRECTORY}/roles/cgminer/
-#      - run:
-#          name:  Push Container
-#          command: |
-#            . venv/bin/activate
-#              ansible-container --var-file cgminer_vars.yml push
-      - save_cache:
-          paths:
-            - ./venv
-          key: v2-dependencies-{{ checksum "requirements.txt" }}
-        
-      # run tests!
-      # this example uses Django's built-in test-runner
-      # other common Python testing frameworks include pytest and nose
-      # https://pytest.org
-      # https://nose.readthedocs.io
-#      - run:
-#          name: run tests
-#          command: |
-#            . venv/bin/activate
-#            python manage.py test
-#
-#      - store_artifacts:
-#          path: test-reports
-#          destination: test-reports
