@@ -28,8 +28,8 @@ jobs:
             #python3 -m venv venv
             #python -m virtualenv venv
             #. venv/bin/activate
-            pip install -r requirements.txt
-            ansible-container --var-file cgminer_vars.yml build
+            sudo pip install -r requirements.txt
+            suddo ansible-container --var-file cgminer_vars.yml build
       #- run:
       #    name: Build Docker Container
       #    command:
