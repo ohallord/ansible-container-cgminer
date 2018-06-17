@@ -26,8 +26,8 @@ jobs:
           name: install dependencies
           command: |
             #python3 -m venv venv
-            python -m virtualenv venv
-            . venv/bin/activate
+            #python -m virtualenv venv
+            #. venv/bin/activate
             pip install --user -r requirements.txt
             ansible-container --var-file cgminer_vars.yml build
       #- run:
