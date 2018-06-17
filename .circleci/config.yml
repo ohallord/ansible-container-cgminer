@@ -40,7 +40,7 @@ jobs:
           name: Build docker container
           command: |
             . venv/bin/activate
-             ansible-container --var-file cgminer_vars.yml build
+             ansible-container --var-file cgminer_vars.yml build --roles-path  ${CIRCLE_WORKING_DIRECTORY}/roles/cgminer/
       - run:
           name:  Push Container
           command: |
