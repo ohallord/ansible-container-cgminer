@@ -27,16 +27,12 @@ jobs:
             python3 -m venv venv
             . venv/bin/activate
             pip install -r requirements.txt
-      - run:
-          name: Build Docker Container
-          command:
-            . venv/bin/activate
             ansible-container --var-file cgminer_vars.yml build
-      - run:
-          name: Build Docker Container
-          command:
-            . venv/bin/activate
-            ansible-container --var-file cgminer_vars.yml push --push-to dockerhubh
+      #- run:
+      #    name: Build Docker Container
+      #    command:
+      #      . venv/bin/activate
+      #      ansible-container --var-file cgminer_vars.yml push --push-to dockerhubh
       - run:
           name: Build Docker Container
           command:
