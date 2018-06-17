@@ -19,8 +19,8 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v2-dependencies-
       - run: 
-        name: Try and run docker start
-        command:  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          name: Try and run docker start
+          command:  docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
 #      - run:
 #          name: Install Docker client
 #          command: |
