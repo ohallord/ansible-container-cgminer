@@ -1,3 +1,4 @@
 setuptools
+docker==2.7.0
 ansible
 ansible-container[docker,k8s]
