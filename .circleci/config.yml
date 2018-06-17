@@ -29,7 +29,7 @@ jobs:
             #python -m virtualenv venv
             . venv/bin/activate
             pip install -r requirements.txt
-            ansible-container --var-file cgminer_vars.yml build  --roles-path  ${CIRCLE_WORKING_DIRECTORY}/roles/cgminer/
+            ansible-container --var-file cgminer_vars.yml build  --roles-path  ${CIRCLE_WORKING_DIRECTORY}/roles/cgminer/ --use-local-python
             #sudo ansible-container --var-file cgminer_vars.yml push --push-to dockerhubh
       #- run:
       #    name: Build Docker Container
