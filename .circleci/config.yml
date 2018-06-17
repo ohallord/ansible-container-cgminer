@@ -31,7 +31,7 @@ jobs:
           name: Build Docker Container
           command:
             . venv/bin/activate
-            ansible-container --var-file cgminer_vars.yml build --debug
+            ansible-container --var-file cgminer_vars.yml build
       - run:
           name: Build Docker Container
           command:
